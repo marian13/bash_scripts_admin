@@ -1,4 +1,3 @@
-
 bash-scripts-help() {
 	# NOTE: Be careful with tabs and spaces!
 	cat <<-'TEXT'

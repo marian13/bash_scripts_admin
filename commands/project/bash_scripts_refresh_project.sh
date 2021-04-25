@@ -19,5 +19,5 @@ bash-scripts-refresh-project() {
 		BASH
 	)
 
-  bash-scripts-setup-bash-profile
+	bash-scripts-setup-bash-profile
 }

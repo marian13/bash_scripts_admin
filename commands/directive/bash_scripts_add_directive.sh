@@ -20,7 +20,7 @@ bash-scripts-add-directive() {
 
 	##
 	# Creates a file for the directive with its code.
-  # Overwrites the directive file if it already exists.
+	# Overwrites the directive file if it already exists.
 	# NOTE: '${CODE}' is NOT wrapped by quotes intentionally to avoid string substitution.
 	#
 	tee "${DIRECTIVE_PATH}" ${CODE} > /dev/null

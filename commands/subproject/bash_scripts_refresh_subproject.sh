@@ -21,8 +21,8 @@ bash-scripts-refresh-subproject() {
 	##
 	# Imports subproject to 'bash_scripts' if it is NOT already imported.
 	# For '-a' docs see https://ss64.com/osx/tee.html
-  # NOTE: The minus sign from '<<-' HEREDOC removes only leading tabs!!!
-  #
+	# NOTE: The minus sign from '<<-' HEREDOC removes only leading tabs!!!
+	#
 	grep --quiet "${SUBPROJECT_INDEX_FULL_NAME}" "${PROJECT_INDEX_PATH}" || (
 		tee -a "${PROJECT_INDEX_PATH}" <<-BASH > /dev/null
 			source "${SUBPROJECT_INDEX_PATH}"
