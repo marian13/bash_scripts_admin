@@ -35,9 +35,11 @@ A list of links to the docs of bash commands, syntax structures, environment var
 - [grep](https://ss64.com/osx/grep.html) --quiet --no-messages --extended-regexp
 - [local](https://ss64.com/bash/local.html)
 - [mkdir](https://ss64.com/osx/mkdir.html) -p
+- [return](https://ss64.com/bash/return.html)
 - [rm](https://ss64.com/bash/rm.html) -rf
 - [source](https://ss64.com/osx/source.html)
 - [tee](https://ss64.com/osx/tee.html) -a
+- [touch](https://ss64.com/bash/touch.html)
 - [which](https://ss64.com/osx/which.html)
 
 ### Syntax Structures
