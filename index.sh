@@ -37,11 +37,11 @@ bash-scripts-admin-root-path() {
 bash-scripts-root-path() {
 	local BASH_SCRIPTS_NAME="bash_scripts"
 
-  if [[ -z "${BASH_SCRIPTS_PARENT_FOLDER}" ]]; then
-    echo "${HOME}/Projects/${BASH_SCRIPTS_NAME}"
-  else
-    echo "${BASH_SCRIPTS_PARENT_FOLDER}/${BASH_SCRIPTS_NAME}"
-  fi
+	if [[ -z "${BASH_SCRIPTS_PARENT_FOLDER}" ]]; then
+		echo "${HOME}/Projects/${BASH_SCRIPTS_NAME}"
+	else
+		echo "${BASH_SCRIPTS_PARENT_FOLDER}/${BASH_SCRIPTS_NAME}"
+	fi
 }
 
 ##
