@@ -7,14 +7,12 @@ bash-scripts-add-directive() {
 	local INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/index.sh"
 	local DIRECTIVE_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
-	local DIRECTIVE_FULL_NAME="${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}"
-
 	bash-scripts-refresh-subproject "${SUBPROJECT}"
 
 	##
 	# Adds importing of the directive file to the corresponding index file.
 	#
-	grep --quiet "${DIRECTIVE_FULL_NAME}" "${INDEX_PATH}" || (
+	grep --quiet "${DIRECTIVE_PATH}" "${INDEX_PATH}" || (
 		tee -a "${INDEX_PATH}" <<-BASH > /dev/null
 			source "${DIRECTIVE_PATH}"
 		BASH

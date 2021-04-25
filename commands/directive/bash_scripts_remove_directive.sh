@@ -20,7 +20,7 @@ bash-scripts-remove-directive() {
 	# For details of 'echo' and 'grep' combination see https://stackoverflow.com/a/30822660/12201472
 	# For '-n' docs see https://ss64.com/osx/echo.html
   #
-	echo -n "$(grep --invert-match --extended-regexp "${DIRECTIVE_FULL_NAME}" "${INDEX_PATH}")" > "${INDEX_PATH}"
+	echo -n "$(grep --invert-match --extended-regexp "${DIRECTIVE_PATH}" "${INDEX_PATH}")" > "${INDEX_PATH}"
 
   ##
   # Removes the directive file.
