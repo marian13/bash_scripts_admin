@@ -68,3 +68,4 @@ A list of links to the docs of bash commands, syntax structures, environment var
 - Introduction of a new script type - installer (in addition to already existing commands and effects).
 - Arguments number checking.
 - More docs.
+- An auto-generated frontmatter placeholder where additional options can be specified, such as which function should be unset when a directive is removed.
