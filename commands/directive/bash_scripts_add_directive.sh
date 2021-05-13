@@ -7,6 +7,10 @@ bash-scripts-add-directive() {
 	local INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/index.sh"
 	local DIRECTIVE_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
+	if [ -z "${EVAL}" ]; then
+		local EVAL="true"
+	fi
+
 	bash-scripts-refresh-subproject "${SUBPROJECT}"
 
 	##
@@ -24,4 +28,11 @@ bash-scripts-add-directive() {
 	# NOTE: '${CODE}' is NOT wrapped by quotes intentionally to avoid string substitution.
 	#
 	tee "${DIRECTIVE_PATH}" ${CODE} > /dev/null
+
+	##
+	# Evaluates the directive code immediately after adding it.
+	#
+	if [[ "${EVAL}" == "true" ]]; then
+		eval ${CODE}
+	fi
 }
