@@ -38,7 +38,7 @@ bash-scripts-add-directive() {
 	##
 	# Evaluates the directive code immediately after adding it.
 	#
-	if [[ "${EVAL}" == "true" ]]; then
+	if [[ "${OVERRIDE}" == "true" && "${EVAL}" == "true" ]]; then
 		eval ${CODE}
 	fi
 }
