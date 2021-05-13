@@ -11,6 +11,10 @@ bash-scripts-add-directive() {
 		local EVAL="true"
 	fi
 
+	if [ -z "${OVERRIDE}" ]; then
+		local OVERRIDE="true"
+	fi
+
 	bash-scripts-refresh-subproject "${SUBPROJECT}"
 
 	##
@@ -27,7 +31,9 @@ bash-scripts-add-directive() {
 	# Overwrites the directive file if it already exists.
 	# NOTE: '${CODE}' is NOT wrapped by quotes intentionally to avoid string substitution.
 	#
-	tee "${DIRECTIVE_PATH}" ${CODE} > /dev/null
+	if [[ "${OVERRIDE}" == "true" ]]; then
+		tee "${DIRECTIVE_PATH}" ${CODE} > /dev/null
+	fi
 
 	##
 	# Evaluates the directive code immediately after adding it.
