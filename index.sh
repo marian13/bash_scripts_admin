@@ -15,7 +15,10 @@
 bash_scripts_admin_root_path() {
 	local BASH_SCRIPTS_ADMIN_NAME="bash_scripts_admin"
 
-	if [ -z "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}" ]; then
+	##
+	# For meaning of '+x' see https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+	#
+	if [ -z "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER+x}" ]; then
 		echo "${HOME}/Projects/${BASH_SCRIPTS_ADMIN_NAME}"
 	else
 		echo "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}/${BASH_SCRIPTS_ADMIN_NAME}"
@@ -37,7 +40,10 @@ bash_scripts_admin_root_path() {
 bash_scripts_root_path() {
 	local BASH_SCRIPTS_NAME="bash_scripts"
 
-	if [ -z "${BASH_SCRIPTS_PARENT_FOLDER}" ]; then
+	##
+	# For meaning of '+x' see https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+	#
+	if [ -z "${BASH_SCRIPTS_PARENT_FOLDER+x}" ]; then
 		echo "${HOME}/Projects/${BASH_SCRIPTS_NAME}"
 	else
 		echo "${BASH_SCRIPTS_PARENT_FOLDER}/${BASH_SCRIPTS_NAME}"
