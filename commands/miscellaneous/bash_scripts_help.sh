@@ -1,17 +1,17 @@
-bash-scripts-help() {
+bash_scripts_help() {
 	# NOTE: Be careful with tabs and spaces!
 	cat <<-'TEXT'
 		--- --- --- --- ---
 
-		bash-scripts-add-directive <subproject> <directive-type> <directive-name> <directive-code>
+		bash_scripts_add_directive <subproject> <directive_type> <directive_name> <directive_code>
 
-		  Adds a new directive to 'bash-scripts' subproject.
+		  Adds a new directive to 'bash_scripts' subproject.
 		  If subproject does NOT already exist, it will automatically created.
-		  <directive-type> can be either 'command' or 'effect'.
+		  <directive_type> can be either 'command' or 'effect'.
 
 		  Example:
 
-		    bash-scripts-add-directive "git" "effect" "display-git-branch" <<-'BASH'
+		    bash_scripts_add_directive "git" "effect" "display_git_branch" <<-'BASH'
 		      ##
 		      # Extracts current git branch name for current directory if current directory is managed by git.
 		      # See https://gist.github.com/ankurk91/2efe14650d54d7d09528cea3ed432f6d for details.
@@ -28,34 +28,34 @@ bash-scripts-help() {
 
 		--- --- --- --- ---
 
-		bash-scripts-erase-project
+		bash_scripts_erase_project
 
-		  Erases 'bash-scripts' project completely.
-			Use 'bash-scripts-refresh-project' to recreate it.
+		  Erases 'bash_scripts' project completely.
+			Use 'bash_scripts_refresh_project' to recreate it.
 
 		--- --- --- --- ---
 
-		bash-scripts-help
+		bash_scripts_help
 
 		  Prints this reference.
 
 		--- --- --- --- ---
 
-		bash-scripts-refresh-project
+		bash_scripts_refresh_project
 
-		  Recreates 'bash-scripts' folders if they do NOT already exist.
+		  Recreates 'bash_scripts' folders if they do NOT already exist.
 
 		--- --- --- --- ---
 
-		bash-scripts-remove-directive <subproject> <directive-type> <directive-name>
+		bash_scripts_remove_directive <subproject> <directive_type> <directive_name>
 
-		  Removes a directive from 'bash-scripts' subproject.
+		  Removes a directive from 'bash_scripts' subproject.
 		  If directive does NOT already exist, it does nothing.
-		  <directive-type> can be either 'command' or 'effect'.
+		  <directive_type> can be either 'command' or 'effect'.
 
 		  Example:
 
-		    bash-scripts-remove-directive "git" "effect" "display-git-branch"
+		    bash_scripts_remove_directive "git" "effect" "display_git_branch"
 
 		--- --- --- --- ---
 	TEXT

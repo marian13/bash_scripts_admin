@@ -1,13 +1,13 @@
-bash-scripts-refresh-subproject() {
+bash_scripts_refresh_subproject() {
 	local SUBPROJECT=$1
 
-	local PROJECT_INDEX_PATH="$(bash-scripts-root-path)/index.sh"
-	local SUBPROJECT_INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/index.sh"
-	local SUBPROJECT_COMMANDS_INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/commands/index.sh"
-	local SUBPROJECT_EFFECTS_INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/effects/index.sh"
+	local PROJECT_INDEX_PATH="$(bash_scripts_root_path)/index.sh"
+	local SUBPROJECT_INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/index.sh"
+	local SUBPROJECT_COMMANDS_INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/commands/index.sh"
+	local SUBPROJECT_EFFECTS_INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/effects/index.sh"
 
-	local SUBPROJECT_COMMANDS_FOLDER_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/commands"
-	local SUBPROJECT_EFFECTS_FOLDER_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/effects"
+	local SUBPROJECT_COMMANDS_FOLDER_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/commands"
+	local SUBPROJECT_EFFECTS_FOLDER_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/effects"
 
 	local SUBPROJECT_INDEX_FULL_NAME="${SUBPROJECT}/index"
 	local SUBPROJECT_COMMANDS_INDEX_FULL_NAME="${SUBPROJECT}/commands/index"
@@ -25,7 +25,7 @@ bash-scripts-refresh-subproject() {
 	#
 	grep --quiet "${SUBPROJECT_INDEX_FULL_NAME}" "${PROJECT_INDEX_PATH}" || (
 		tee -a "${PROJECT_INDEX_PATH}" <<-BASH > /dev/null
-			source "${SUBPROJECT_INDEX_PATH}"
+			. "${SUBPROJECT_INDEX_PATH}"
 		BASH
 	)
 
@@ -35,13 +35,13 @@ bash-scripts-refresh-subproject() {
 	grep --quiet "${SUBPROJECT_COMMANDS_INDEX_FULL_NAME}" "${SUBPROJECT_INDEX_PATH}" || (
 		tee "${SUBPROJECT_INDEX_PATH}" <<-BASH > /dev/null
 			# This is an auto-generated file.
-			# Please, do NOT modify it directly, use "bash-scripts" commands instead.
+			# Please, do NOT modify it directly, use "bash_scripts" commands instead.
 			# To see a list of available commands, execute the following in your terminal:
 			#
-			# $ bash-scripts-help
+			# $ bash_scripts_help
 			#
-			source "${SUBPROJECT_COMMANDS_INDEX_PATH}"
-			source "${SUBPROJECT_EFFECTS_INDEX_PATH}"
+			. "${SUBPROJECT_COMMANDS_INDEX_PATH}"
+			. "${SUBPROJECT_EFFECTS_INDEX_PATH}"
 		BASH
 	)
 }

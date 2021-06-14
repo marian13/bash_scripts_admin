@@ -1,11 +1,11 @@
-bash-scripts-add-directive() {
+bash_scripts_add_directive() {
 	local SUBPROJECT=$1
 	local TYPE=$2
 	local DIRECTIVE_NAME=$3
 	local CODE=$4
 
-	local INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/index.sh"
-	local DIRECTIVE_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
+	local INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/index.sh"
+	local DIRECTIVE_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
 	if [ -z "${EVAL}" ]; then
 		local EVAL="true"
@@ -15,14 +15,14 @@ bash-scripts-add-directive() {
 		local OVERRIDE="true"
 	fi
 
-	bash-scripts-refresh-subproject "${SUBPROJECT}"
+	bash_scripts_refresh_subproject "${SUBPROJECT}"
 
 	##
 	# Adds importing of the directive file to the corresponding index file.
 	#
 	grep --quiet "${DIRECTIVE_PATH}" "${INDEX_PATH}" || (
 		tee -a "${INDEX_PATH}" <<-BASH > /dev/null
-			source "${DIRECTIVE_PATH}"
+			. "${DIRECTIVE_PATH}"
 		BASH
 	)
 

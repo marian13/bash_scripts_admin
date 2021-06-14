@@ -1,5 +1,5 @@
-bash-scripts-erase-project() {
-	rm -rf "$(bash-scripts-root-path)"
+bash_scripts_erase_project() {
+	rm -rf "$(bash_scripts_root_path)"
 
-	bash-scripts-teardown-bash-profile
+	bash_scripts_teardown_bash_profile
 }
