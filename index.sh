@@ -15,7 +15,7 @@
 bash_scripts_admin_root_path() {
 	local BASH_SCRIPTS_ADMIN_NAME="bash_scripts_admin"
 
-	if [[ -z "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}" ]]; then
+	if [ -z "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}" ]; then
 		echo "${HOME}/Projects/${BASH_SCRIPTS_ADMIN_NAME}"
 	else
 		echo "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}/${BASH_SCRIPTS_ADMIN_NAME}"
@@ -37,7 +37,7 @@ bash_scripts_admin_root_path() {
 bash_scripts_root_path() {
 	local BASH_SCRIPTS_NAME="bash_scripts"
 
-	if [[ -z "${BASH_SCRIPTS_PARENT_FOLDER}" ]]; then
+	if [ -z "${BASH_SCRIPTS_PARENT_FOLDER}" ]; then
 		echo "${HOME}/Projects/${BASH_SCRIPTS_NAME}"
 	else
 		echo "${BASH_SCRIPTS_PARENT_FOLDER}/${BASH_SCRIPTS_NAME}"
@@ -53,7 +53,7 @@ bash_scripts_root_path() {
 . "$(bash_scripts_admin_root_path)/commands/index.sh"
 
 # When BASH_SCRIPTS_TEST is set to true, resets the 'bash_scripts'. For testing purposes only !!!
-if [[ "${BASH_SCRIPTS_TEST}" == "true" ]]; then
+if [ "${BASH_SCRIPTS_TEST}" == "true" ]; then
 	bash_scripts_erase_project
 fi
 
