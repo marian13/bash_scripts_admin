@@ -1,11 +1,11 @@
-bash-scripts-remove-directive() {
+bash_scripts_remove_directive() {
 	local SUBPROJECT=$1
 	local TYPE=$2
 	local DIRECTIVE_NAME=$3
 	local CODE=$4
 
-	local INDEX_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/index.sh"
-	local DIRECTIVE_PATH="$(bash-scripts-root-path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
+	local INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/index.sh"
+	local DIRECTIVE_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
 	##
 	# Checks whether a file exist.

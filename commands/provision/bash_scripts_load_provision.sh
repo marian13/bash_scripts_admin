@@ -1,5 +1,5 @@
-bash-scripts-load-provision() {
+bash_scripts_load_provision() {
 	local BASH_SCRIPTS_PROVISION_PATH=$1
 
-	source "${BASH_SCRIPTS_PROVISION_PATH}"
+	. "${BASH_SCRIPTS_PROVISION_PATH}"
 }
