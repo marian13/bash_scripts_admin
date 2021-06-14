@@ -3,7 +3,7 @@ bash_scripts_setup_bash_profile() {
 	local BASH_SCRIPTS_INDEX_PATH="$(bash_scripts_root_path)/index.sh"
 
 	# If '"${BASH_PROFILE_PATH}"' is an empty string then
-	if [[ -z "${BASH_PROFILE_PATH}" ]]; then
+	if [ -z "${BASH_PROFILE_PATH}" ]; then
 		local BASH_PROFILE_PATH="${HOME}/.bash_profile"
 	fi
 
