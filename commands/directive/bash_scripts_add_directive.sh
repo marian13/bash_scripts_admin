@@ -31,14 +31,14 @@ bash_scripts_add_directive() {
 	# Overwrites the directive file if it already exists.
 	# NOTE: '${CODE}' is NOT wrapped by quotes intentionally to avoid string substitution.
 	#
-	if [ "${OVERRIDE}" == "true" ]; then
+	if [ "${OVERRIDE}" = "true" ]; then
 		tee "${DIRECTIVE_PATH}" ${CODE} > /dev/null
 	fi
 
 	##
 	# Evaluates the directive code immediately after adding it.
 	#
-	if [ "${OVERRIDE}" == "true" ] && [ "${EVAL}" == "true" ]; then
+	if [ "${OVERRIDE}" = "true" ] && [ "${EVAL}" = "true" ]; then
 		eval ${CODE}
 	fi
 }
