@@ -8,6 +8,13 @@ bash-scripts-setup-bash-profile() {
 	fi
 
 	##
+	# Creates .bash_profile if it does not exist.
+	#
+	if [ ! -f "${BASH_PROFILE_PATH}" ]; then
+		touch "${BASH_PROFILE_PATH}"
+	fi
+
+	##
 	# Adds importing of 'bash-scripts-admin' to the '.bash_profile' if it is NOT already added.
 	#
 	grep --quiet "${BASH_SCRIPTS_ADMIN_INDEX_PATH}" "${BASH_PROFILE_PATH}" || (
