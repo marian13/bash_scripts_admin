@@ -3,9 +3,6 @@
 #######################################
 # Returns the path of the root folder of the 'bash_scripts_admin'.
 #
-# If no value is set to the global BASH_SCRIPTS_ADMIN_PARENT_FOLDER variable,
-# '${HOME}/Projects/' will be used instead.
-#
 # NOTE: This function should be invoked like so: '$(bash_scripts_admin_root_path)'.
 # NOTE: Definition of this function should be located before '. "$(bash_scripts_admin_root_path)/commands/index.sh"'.
 #
@@ -13,41 +10,43 @@
 #
 #######################################
 bash_scripts_admin_root_path() {
-	local BASH_SCRIPTS_ADMIN_NAME="bash_scripts_admin"
-
-	##
-	# For meaning of '+x' see https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
-	#
-	if [ -z "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER+x}" ]; then
-		echo "${HOME}/Projects/${BASH_SCRIPTS_ADMIN_NAME}"
-	else
-		echo "${BASH_SCRIPTS_ADMIN_PARENT_FOLDER}/${BASH_SCRIPTS_ADMIN_NAME}"
-	fi
+	echo "$(__bash_scripts_admin_resolve_current_script_folder_path)"
 }
 
 #######################################
 # Returns the path of the root folder of the 'bash_scripts'.
 #
-# If no value is set to the global BASH_SCRIPTS_PARENT_FOLDER variable,
-# '${HOME}/Projects/' will be used instead.
-#
 # NOTE: This function should be invoked like so: '$(bash_scripts_root_path)'.
 # NOTE: Definition of this function should be located before '. "$(bash_scripts_root_path)/commands/index.sh"'.
 #
 # DOCS: For returning values from bash functions see https://www.linuxjournal.com/content/return-values-bash-functions
+# DOCS: For deleting a suffix from a string see https://stackoverflow.com/a/16623897/12201472
 #
 #######################################
 bash_scripts_root_path() {
-	local BASH_SCRIPTS_NAME="bash_scripts"
+	local CURRENT_SCRIPT_FOLDER_PATH="$(__bash_scripts_admin_resolve_current_script_folder_path)"
 
-	##
-	# For meaning of '+x' see https://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
-	#
-	if [ -z "${BASH_SCRIPTS_PARENT_FOLDER+x}" ]; then
-		echo "${HOME}/Projects/${BASH_SCRIPTS_NAME}"
-	else
-		echo "${BASH_SCRIPTS_PARENT_FOLDER}/${BASH_SCRIPTS_NAME}"
-	fi
+	echo "${CURRENT_SCRIPT_FOLDER_PATH%"_admin"}"
+}
+
+__bash_scripts_admin_resolve_current_script_folder_path() {
+	# https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel
+	# https://gist.github.com/tvlooy/cbfbdb111a4ebad8b93e
+	# Test 3: overcomplicated stackoverflow solution
+	local SOURCE="${BASH_SOURCE[0]}"
+	local FOLDER=""
+
+	while [ -h "${SOURCE}" ]; do
+		FOLDER="$(cd -P "$(dirname "${SOURCE}")" && pwd)"
+
+		SOURCE="$(readlink "${SOURCE}")"
+
+		[[ ${SOURCE} != /* ]] && SOURCE="${FOLDER}/${SOURCE}"
+	done
+
+	FOLDER="$(cd -P "$(dirname "${SOURCE}" )" && pwd)"
+
+	echo ${FOLDER}
 }
 
 ##
