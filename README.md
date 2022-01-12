@@ -92,3 +92,4 @@ A list of links to the docs of bash commands, syntax structures, environment var
 - More docs.
 - A frontmatter where additional options can be specified, such as which function should be unset when a directive is removed.
 - Specs, for example using [Serverspec](https://serverspec.org/).
+- List commands.
