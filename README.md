@@ -1,6 +1,6 @@
 # bash-scripts-admin
 
-A tool which manages bash scripts.
+A tool that manages bash scripts.
 
 ## Installation
 
