@@ -22,6 +22,28 @@ Where `BASH_PROFILE_PATH` is [a path to a file that is automatically loaded](htt
 
 For example, it may be [`~/.bash_profile` on macOS](https://apple.stackexchange.com/questions/51036/what-is-the-difference-between-bash-profile-and-bashrc).
 
+## Development
+
+### How to start local dev env?
+
+Copy and run the following command:
+
+```bash
+cd ~/Projects/bash_scripts_admin \
+  && direnv exec . tmuxinator start bash_scripts_admin
+```
+
+**NOTE:** `tmuxinator` is used instead of `mux` since it is not available inside `direnv exec`.
+
+### How to stop local dev env?
+
+Use:
+
+```bash
+cd ~/Projects/bash_scripts_admin \
+  && tmuxinator stop bash_scripts_admin
+```
+
 ## Glossary
 
 - Bash profile.
