@@ -5,3 +5,5 @@ WORKDIR /app
 
 COPY . /app
 RUN bundle install
+
+RUN chmod +x /app/index.sh

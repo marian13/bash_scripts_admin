@@ -2,7 +2,7 @@
 
 RSpec.configure do |config|
   mod = Module.new do
-    def bash_scripts_admin = @bash_scripts_admin ||= "#{application_root}/entry"
+    def bash_scripts_admin = @bash_scripts_admin ||= "#{application_root}/index.sh"
   end
 
   config.include mod

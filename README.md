@@ -10,6 +10,12 @@ Navigate to a folder where you would like to install `bash_scripts_admin` and ex
 git clone https://github.com/marian13/bash_scripts_admin.git
 ```
 
+If you are using macOS, additionally run:
+
+```bash
+brew install coreutils
+```
+
 ## Setup
 
 ```bash
