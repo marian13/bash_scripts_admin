@@ -1,0 +1,23 @@
+version: '7.1'
+
+compose:
+  files:
+    - docker-compose.yml
+  project_name: ${PROJECT_NAME}
+
+interaction:
+  ##
+  # Shortcut for rspec.
+  #
+  #   dip rs
+  #
+  rs:
+    service: app
+    command: bundle exec rspec
+
+  ##
+  # Runs specs for Ruby using RSpec.
+  #
+  rspec:
+    service: app
+    command: bundle exec rspec
