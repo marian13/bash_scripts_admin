@@ -15,6 +15,7 @@ windows:
       layout: even-vertical
       root: ./
       panes:
+        - history -s "docker compose up --build app"
         - git status
   - rspec:
     layout: even-vertical
