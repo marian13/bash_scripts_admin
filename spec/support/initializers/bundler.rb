@@ -8,4 +8,4 @@ require "bundler/setup"
 
 Bundler.require(:default, :test)
 
-puts "RSpec: Bundler initialier loaded."
+puts "RSpec: Bundler initializer loaded."

@@ -10,4 +10,4 @@ RSpec.configure do |config|
   config.include mod
 end
 
-puts "RSpec: application_root initialier loaded."
+puts "RSpec: application_root helper loaded."

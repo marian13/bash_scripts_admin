@@ -100,3 +100,4 @@ RSpec.configure do |config|
 end
 
 require_relative "support/initializers"
+require_relative "support/helpers"
