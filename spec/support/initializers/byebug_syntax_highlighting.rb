@@ -60,3 +60,5 @@ if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new('10.0.0')
 else
   warn 'Byebug version is lower than v10.0.0...'
 end
+
+puts "RSpec: Byebug syntax highlighting initializer loaded."
