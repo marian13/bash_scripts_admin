@@ -3,7 +3,7 @@
 RSpec.configure do |config|
   mod = Module.new do
     def application_root
-      @application_root ||= ::File.expand_path("../..", __dir__)
+      @application_root ||= ::File.expand_path("../../..", __dir__)
     end
   end
 
