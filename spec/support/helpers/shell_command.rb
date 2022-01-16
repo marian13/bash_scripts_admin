@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   mod = Module.new do
     class ShellCommand
       attr_reader :command
 
-      def initialize(command)
-        @command = command
-      end
+      def initialize(command) = @command = command
 
       ##
       # Invokes a shell command.
@@ -29,11 +29,7 @@ RSpec.configure do |config|
       attr_accessor :exit_status, :stdin, :stdout, :stderr
     end
 
-    def shell_command(command, &block)
-      ShellCommand
-        .new(command)
-        .tap { |instance| instance.invoke(&block) if block }
-    end
+    def shell_command(command, &block) = ShellCommand.new(command).tap { _1.invoke(&block) if block }
   end
 
   config.include mod

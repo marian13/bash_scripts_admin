@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   mod = Module.new do
     class ShellFunction
       attr_reader :name
 
-      def initialize(name)
-        @name = name
-      end
+      def initialize(name) = @name = name
 
       ##
       # Checks whether a shell function exists.
@@ -16,9 +16,7 @@ RSpec.configure do |config|
       #
       # @return [Boolean]
       #
-      def exist?
-        ["alias", "keyword", "function", "builtin"].include?(`type -t ${#{name}}`)
-      end
+      def exist? = ["alias", "keyword", "function", "builtin"].include?(`type -t ${#{name}}`)
 
       ##
       # Invokes a shell function.
@@ -29,16 +27,10 @@ RSpec.configure do |config|
       # @param args [String] shell function arguments as a string.
       # @return [String]
       #
-      def invoke(args = nil)
-        return `#{name}` if args.to_s.empty?
-
-        `#{name} #{args}`
-      end
+      def invoke(args = nil) = args.to_s.empty? ? `#{name}` : `#{name} #{args}`
     end
 
-    def shell_function(name)
-      ShellFunction.new(name)
-    end
+    def shell_function(name) = ShellFunction.new(name)
   end
 
   config.include mod

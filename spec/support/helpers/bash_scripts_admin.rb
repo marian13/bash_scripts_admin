@@ -2,7 +2,7 @@
 
 RSpec.configure do |config|
   mod = Module.new do
-    def application_root = @application_root ||= ::File.expand_path("../../..", __dir__)
+    def bash_scripts_admin = @bash_scripts_admin ||= "#{application_root}/entry"
   end
 
   config.include mod
