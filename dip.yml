@@ -21,3 +21,11 @@ interaction:
   rspec:
     service: app
     command: bundle exec rspec
+
+  ##
+  # Open a container and immediately navigate to the gems folder.
+  # Useful to debugging, e.g: placing byebug in a gem file.
+  #
+  cd_gems:
+    service: app
+    command: bash -c "cd /usr/local/bundle/gems/ && bash"
