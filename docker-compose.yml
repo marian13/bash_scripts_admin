@@ -7,5 +7,20 @@ services:
     container_name: ${PROJECT_NAME}_app
     volumes:
       - .:/app
+
+    ##
+    # Sets non root user for docker compose commands.
+    # 8888 (unique user id) is taken from Dockerfile.
+    #
+    # NOTE: dip issues the following error when user is set like 'user: "bashcov"' or 'user: bashcov'
+    #
+    #   Creating bash_scripts_admin_app_run ... done
+    #   Error response from daemon: unable to find user bashcov: no matching entries in passwd file
+    #   ERROR: 1
+    #
+    # https://docs.docker.com/compose/compose-file/compose-file-v3/#domainname-hostname-ipc-mac_address-privileged-read_only-shm_size-stdin_open-tty-user-working_dir
+    # https://stackoverflow.com/a/48730146/12201472
+    #
+    user: "8888"
     tty: true
     stdin_open: true
