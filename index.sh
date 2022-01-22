@@ -26,7 +26,7 @@
   # NOTE: greadlink is GNU readlink for macOS.
   # https://stackoverflow.com/a/4031502/12201472
   #
-  if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ "${OSTYPE}" == "darwin"* ]]; then
     SETUP_ARGS[0]="$(dirname "$(greadlink -f ${0})")" # ROOT_PATH
   else
     SETUP_ARGS[0]="$(dirname "$(readlink -f ${0})")" # ROOT_PATH

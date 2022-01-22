@@ -14,9 +14,9 @@ RSpec.configure do |config|
       # https://tldp.org/LDP/abs/html/parameter-substitution.html
       # https://stackoverflow.com/a/39296723/12201472
       #
-      def exist? = `echo ${#{name}-default}`.chomp != "default"
+      def exist? = ShellScript.new("echo ${#{name}-default}").invoke.stdout != "default"
 
-      def value = `echo ${#{name}}`.chomp
+      def value = ShellScript.new("echo ${#{name}}").invoke.stdout
     end
 
     def env_variable(name) = EnvVariable.new(name)
