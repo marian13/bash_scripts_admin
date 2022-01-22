@@ -2,7 +2,7 @@
 
 RSpec.configure do |config|
   mod = Module.new do
-    class ShellCommand
+    class ShellScript
       attr_reader :command
 
       def initialize(command) = @command = command
@@ -12,7 +12,7 @@ RSpec.configure do |config|
       #
       # Uses Open3.popen3 under the hood.
       # https://docs.ruby-lang.org/en/3.1/Open3.html#method-c-popen3
-      # @return [ShellCommand]
+      # @return [ShellScript]
       #
       def invoke(&block)
         Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
@@ -29,11 +29,11 @@ RSpec.configure do |config|
       attr_accessor :exit_status, :stdin, :stdout, :stderr
     end
 
-    def shell_command(command, &block) = ShellCommand.new(command).tap { _1.invoke(&block) if block }
+    def shell_script(command, &block) = ShellScript.new(command).tap { _1.invoke(&block) if block }
   end
 
   config.include mod
 end
 
-puts "RSpec: shell_command helper loaded."
+puts "RSpec: shell_script helper loaded."
 

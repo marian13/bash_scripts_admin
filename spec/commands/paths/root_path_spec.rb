@@ -4,7 +4,7 @@ require "tempfile"
 RSpec.describe "bash-scripts-admin" do
   describe "root-path" do
     it "returns path of bash_scripts_admin directory" do
-      shell_command("#{bash_scripts_admin} root-path") do |result|
+      shell_script("#{bash_scripts_admin} root-path") do |result|
         expect(result.exit_status).to eq(0)
         expect(result.stderr).to be_empty
         expect(result.stdout).to eq("/app")

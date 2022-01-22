@@ -16,7 +16,7 @@ RSpec.configure do |config|
       #
       # @return [Boolean]
       #
-      def exist? = ["alias", "keyword", "function", "builtin"].include?(`type -t ${#{name}}`)
+      def exist? = ["alias", "keyword", "function", "builtin"].include?(`type -t #{name}`)
 
       ##
       # Invokes a shell function.
