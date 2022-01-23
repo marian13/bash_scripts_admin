@@ -1,7 +1,9 @@
-require 'tempfile'
+# frozen_string_literal: true
 
-require 'byebug'
-require 'rouge'
+require "tempfile"
+
+require "byebug"
+require "rouge"
 
 ##
 # Yet another hack how to enable the syntax highlighting for the byebug gem. Works for v10.0.0 and higher.
@@ -10,9 +12,9 @@ require 'rouge'
 # WARNING: Although this hack is based on the monkey patching,
 # use this technique for other issues in your own codebases with a precaution.
 #
-require 'byebug/runner' unless defined? Byebug::VERSION
+require "byebug/runner" unless defined? Byebug::VERSION
 
-if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new('10.0.0')
+if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new("10.0.0")
   module Byebug
     class SourceFileFormatter
       ##
@@ -27,7 +29,7 @@ if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new('10.0.0')
       # returns a copy of it, where the syntax is highlighted by the Rouge gem(A pure Ruby code highlighter).
       # (See https://github.com/rouge-ruby/rouge)
       #
-      # In order to create a copy, it utilizes Ruby's <tt>tempfile</tt> stdlib.
+      # In order to create a copy, it utilizes Ruby"s <tt>tempfile</tt> stdlib.
       # (See https://ruby-doc.org/stdlib-2.7.0/libdoc/tempfile/rdoc/Tempfile.html)
       # A tempfile is automatically deleted from the underlying OS when it is garbage-collected.
       #
@@ -49,7 +51,7 @@ if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new('10.0.0')
 
               @tempfile_with_highlighted_syntax.path
             else
-              warn %q{Rouge(a pure Ruby code highlighter) is not defined. Maybe you forgot to require it? (require 'rouge')}
+              warn %q{Rouge(a pure Ruby code highlighter) is not defined. Maybe you forgot to require it? (require "rouge")}
 
               @file
             end
@@ -58,7 +60,7 @@ if Gem::Version.new(Byebug::VERSION) >= Gem::Version.new('10.0.0')
     end
   end
 else
-  warn 'Byebug version is lower than v10.0.0...'
+  warn "Byebug version is lower than v10.0.0..."
 end
 
 puts "RSpec: Byebug syntax highlighting initializer loaded."
