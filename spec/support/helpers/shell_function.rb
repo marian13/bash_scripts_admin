@@ -7,6 +7,10 @@ RSpec.configure do |config|
 
       def initialize(name) = @name = name
 
+      class << self
+        def create(value, **kwargs) = new(value, **kwargs)
+      end
+
       ##
       # Checks whether a shell function exists.
       #
@@ -19,7 +23,7 @@ RSpec.configure do |config|
       #
       def exist? = !not_exist?
 
-      def not_exist? = ShellScript.new("type -t #{name}").invoke.stdout.empty?
+      def not_exist? = ShellScript.create("type -t #{name}").invoke.stdout.empty?
 
       ##
       # Invokes a shell function.
@@ -30,10 +34,10 @@ RSpec.configure do |config|
       # @param args [String] shell function arguments as a string.
       # @return [ShellScript]
       #
-      def invoke(args = nil) = ShellScript.new("#{name} #{args}".rstrip).invoke
+      def invoke(args = nil) = ShellScript.create("#{name} #{args}".rstrip).invoke
     end
 
-    def shell_function(name) = ShellFunction.new(name)
+    def shell_function(name) = ShellFunction.create(name)
   end
 
   config.include mod

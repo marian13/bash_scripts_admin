@@ -7,6 +7,10 @@ RSpec.configure do |config|
 
       def initialize(name) = @name = name
 
+      class << self
+        def create(value, **kwargs) = new(value, **kwargs)
+      end
+
       ##
       # Checks whether an env variable exists (whether it is set).
       #
@@ -14,12 +18,12 @@ RSpec.configure do |config|
       # https://tldp.org/LDP/abs/html/parameter-substitution.html
       # https://stackoverflow.com/a/39296723/12201472
       #
-      def exist? = ShellScript.new("echo ${#{name}-default}").invoke.stdout != "default"
+      def exist? = ShellScript.create("echo ${#{name}-default}").invoke.stdout != "default"
 
-      def value = ShellScript.new("echo ${#{name}}").invoke.stdout
+      def value = ShellScript.create("echo ${#{name}}").invoke.stdout
     end
 
-    def env_variable(name) = EnvVariable.new(name)
+    def env_variable(name) = EnvVariable.create(name)
   end
 
   config.include mod
