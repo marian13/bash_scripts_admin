@@ -1,45 +1,65 @@
 #!/bin/bash
 
-##
-# IMPORTANT: Parentheses are used here to avoid the exposure
-# of temporal variables and functions to the outer scope.
+#######################################
+# Returns the path of the root folder of the 'bash_scripts_admin'.
 #
-(
-  ##
-  # Setup
-  #
-  # SETUP_ARGS[0] - Stores value of the root path.
-  #
-  # Based on "Test 5: via readlink with space"
-  # https://gist.github.com/tvlooy/cbfbdb111a4ebad8b93e
-  #
-  # NOTE: If you decide to move this logic into "commands/setup.sh"
-  # you will receive "readlink: command not found" and "dirname: command not found" errors.
-  # TODO: Currently it is not clear why those errors happen.
-  #
-  # NOTE: Check the comment by tvlooy. It explains why accepted SO answer is NOT the best.
-  # https://stackoverflow.com/a/246128/12201472
-  #
-  # NOTE: How to check whether macOS host?
-  # https://stackoverflow.com/a/54285201/12201472
-  #
-  # NOTE: greadlink is GNU readlink for macOS.
-  # https://stackoverflow.com/a/4031502/12201472
-  #
-  if [[ "${OSTYPE}" == "darwin"* ]]; then
-    SETUP_ARGS[0]="$(dirname "$(greadlink -f ${0})")" # ROOT_PATH
-  else
-    SETUP_ARGS[0]="$(dirname "$(readlink -f ${0})")" # ROOT_PATH
-  fi
+# NOTE: This function should be invoked like so: '$(bash_scripts_admin_root_path)'.
+# NOTE: Definition of this function should be located before '. "$(bash_scripts_admin_root_path)/commands/index.sh"'.
+#
+# DOCS: For returning values from bash functions see https://www.linuxjournal.com/content/return-values-bash-functions
+#
+#######################################
+bash_scripts_admin_root_path() {
+	echo "$(__bash_scripts_admin_resolve_current_script_folder_path)"
+}
 
-  . "./commands/setup.sh"
+#######################################
+# Returns the path of the root folder of the 'bash_scripts'.
+#
+# NOTE: This function should be invoked like so: '$(bash_scripts_root_path)'.
+# NOTE: Definition of this function should be located before '. "$(bash_scripts_root_path)/commands/index.sh"'.
+#
+# DOCS: For returning values from bash functions see https://www.linuxjournal.com/content/return-values-bash-functions
+# DOCS: For deleting a suffix from a string see https://stackoverflow.com/a/16623897/12201472
+#
+#######################################
+bash_scripts_root_path() {
+	local CURRENT_SCRIPT_FOLDER_PATH="$(__bash_scripts_admin_resolve_current_script_folder_path)"
 
-  ##
-  # Main
-  #
-  # NOTE: ${@} stores all current script arguments except ${0}.
-  #
-  MAIN_ARGS=${@}
+	echo "${CURRENT_SCRIPT_FOLDER_PATH%"_admin"}"
+}
 
-  . "./entries/main.sh"
-)
+__bash_scripts_admin_resolve_current_script_folder_path() {
+	# https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel
+	# https://gist.github.com/tvlooy/cbfbdb111a4ebad8b93e
+	# Test 3: overcomplicated stackoverflow solution
+	local SOURCE="${BASH_SOURCE[0]}"
+	local FOLDER=""
+
+	while [ -h "${SOURCE}" ]; do
+		FOLDER="$(cd -P "$(dirname "${SOURCE}")" && pwd)"
+
+		SOURCE="$(readlink "${SOURCE}")"
+
+		[[ ${SOURCE} != /* ]] && SOURCE="${FOLDER}/${SOURCE}"
+	done
+
+	FOLDER="$(cd -P "$(dirname "${SOURCE}" )" && pwd)"
+
+	echo ${FOLDER}
+}
+
+##
+# The main entry point of the 'bash_scripts_admin'.
+#
+# IMPORTANT: 'bash_scripts_admin' is currently tested only on the macOS flavor of bash.
+
+# Imports all 'bash_scripts_admin' commands.
+. "$(bash_scripts_admin_root_path)/commands/index.sh"
+
+# When BASH_SCRIPTS_TEST is set to true, resets the 'bash_scripts'. For testing purposes only !!!
+if [ "${BASH_SCRIPTS_TEST}" = "true" ]; then
+	bash_scripts_erase_project
+fi
+
+bash_scripts_refresh_project
