@@ -27,5 +27,5 @@ For example, it may be [`~/.bash_profile` on macOS](https://apple.stackexchange.
 ## Usage
 
 ```
-bash_scripts_admin_help
+bash_scripts_help
 ```
