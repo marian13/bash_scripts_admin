@@ -6,6 +6,10 @@ bash_scripts_refresh_subproject() {
 	local SUBPROJECT_COMMANDS_INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/commands/index.sh"
 	local SUBPROJECT_EFFECTS_INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/effects/index.sh"
 
+	local SUBPROJECT_INDEX_PATH_WITH_HOME="\${HOME}${SUBPROJECT_INDEX_PATH#"${HOME}"}"
+	local SUBPROJECT_COMMANDS_INDEX_PATH_WITH_HOME="\${HOME}${SUBPROJECT_COMMANDS_INDEX_PATH#"${HOME}"}"
+	local SUBPROJECT_EFFECTS_INDEX_PATH_WITH_HOME="\${HOME}${SUBPROJECT_EFFECTS_INDEX_PATH#"${HOME}"}"
+
 	local SUBPROJECT_COMMANDS_FOLDER_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/commands"
 	local SUBPROJECT_EFFECTS_FOLDER_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/effects"
 
@@ -25,7 +29,7 @@ bash_scripts_refresh_subproject() {
 	#
 	grep --quiet "${SUBPROJECT_INDEX_FULL_NAME}" "${PROJECT_INDEX_PATH}" || (
 		tee -a "${PROJECT_INDEX_PATH}" <<-BASH > /dev/null
-			. "${SUBPROJECT_INDEX_PATH}"
+			. "${SUBPROJECT_INDEX_PATH_WITH_HOME}"
 		BASH
 	)
 
@@ -40,8 +44,8 @@ bash_scripts_refresh_subproject() {
 			#
 			# $ bash_scripts_help
 			#
-			. "${SUBPROJECT_COMMANDS_INDEX_PATH}"
-			. "${SUBPROJECT_EFFECTS_INDEX_PATH}"
+			. "${SUBPROJECT_COMMANDS_INDEX_PATH_WITH_HOME}"
+			. "${SUBPROJECT_EFFECTS_INDEX_PATH_WITH_HOME}"
 		BASH
 	)
 }

@@ -7,6 +7,8 @@ bash_scripts_remove_directive() {
 	local INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/index.sh"
 	local DIRECTIVE_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
+  local DIRECTIVE_PATH_WITH_HOME="\${HOME}${DIRECTIVE_PATH#"${HOME}"}"
+
 	##
 	# Checks whether a file exist.
 	# https://stackoverflow.com/a/638980/12201472
@@ -20,7 +22,7 @@ bash_scripts_remove_directive() {
 	# For details of 'echo' and 'grep' combination see https://stackoverflow.com/a/30822660/12201472
 	# For '-n' docs see https://ss64.com/osx/echo.html
 	#
-	echo -n "$(grep --invert-match --extended-regexp "${DIRECTIVE_PATH}" "${INDEX_PATH}")" > "${INDEX_PATH}"
+	echo -n "$(grep --invert-match --extended-regexp "${DIRECTIVE_PATH_WITH_HOME}" "${INDEX_PATH}")" > "${INDEX_PATH}"
 
 	##
 	# Removes the directive file.

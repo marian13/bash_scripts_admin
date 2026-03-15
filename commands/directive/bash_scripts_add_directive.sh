@@ -6,6 +6,7 @@ bash_scripts_add_directive() {
 
 	local INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/index.sh"
 	local DIRECTIVE_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
+  local DIRECTIVE_PATH_WITH_HOME="\${HOME}${DIRECTIVE_PATH#"${HOME}"}"
 
 	if [ -z "${EVAL}" ]; then
 		local EVAL="true"
@@ -22,7 +23,7 @@ bash_scripts_add_directive() {
 	#
 	grep --quiet "${DIRECTIVE_PATH}" "${INDEX_PATH}" || (
 		tee -a "${INDEX_PATH}" <<-BASH > /dev/null
-			. "${DIRECTIVE_PATH}"
+			. "${DIRECTIVE_PATH_WITH_HOME}"
 		BASH
 	)
 

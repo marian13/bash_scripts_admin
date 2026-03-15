@@ -29,3 +29,7 @@ For example, it may be [`~/.bash_profile` on macOS](https://apple.stackexchange.
 ```
 bash_scripts_help
 ```
+
+---
+
+Copyright (c) 2021-2026 Marian Kostyk.
