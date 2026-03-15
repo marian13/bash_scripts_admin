@@ -7,7 +7,7 @@ bash_scripts_remove_directive() {
 	local INDEX_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/index.sh"
 	local DIRECTIVE_PATH="$(bash_scripts_root_path)/${SUBPROJECT}/${TYPE}s/${DIRECTIVE_NAME}.sh"
 
-  local DIRECTIVE_PATH_WITH_HOME="\${HOME}${DIRECTIVE_PATH#"${HOME}"}"
+	local DIRECTIVE_PATH_WITH_HOME="\${HOME}${DIRECTIVE_PATH#"${HOME}"}"
 
 	##
 	# Checks whether a file exist.
