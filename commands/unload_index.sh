@@ -1,0 +1,13 @@
+unset -f bash_scripts_admin_root_path
+unset -f bash_scripts_root_path
+unset -f bash_scripts_setup_bash_profile
+unset -f bash_scripts_teardown_bash_profile
+unset -f bash_scripts_add_directive
+unset -f bash_scripts_remove_directive
+unset -f bash_scripts_admin_open_editor
+unset -f bash_scripts_open_editor
+unset -f bash_scripts_help
+unset -f bash_scripts_erase_project
+unset -f bash_scripts_refresh_project
+unset -f bash_scripts_load_provision
+unset -f bash_scripts_refresh_subproject
