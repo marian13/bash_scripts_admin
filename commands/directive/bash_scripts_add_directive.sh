@@ -21,7 +21,7 @@ bash_scripts_add_directive() {
 	##
 	# Adds importing of the directive file to the corresponding index file.
 	#
-	grep --quiet "${DIRECTIVE_PATH_WITH_HOME}" "${INDEX_PATH}" || (
+	command grep --quiet "${DIRECTIVE_PATH_WITH_HOME}" "${INDEX_PATH}" || (
 		tee -a "${INDEX_PATH}" <<-BASH > /dev/null
 			. "${DIRECTIVE_PATH_WITH_HOME}"
 		BASH

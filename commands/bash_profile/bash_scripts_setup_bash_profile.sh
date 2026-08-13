@@ -20,7 +20,11 @@ bash_scripts_setup_bash_profile() {
 	##
 	# Adds importing of 'bash_scripts_admin' to the '.bash_profile' if it is NOT already added.
 	#
-	grep --quiet "${BASH_SCRIPTS_ADMIN_INDEX_PATH_WITH_HOME}" "${BASH_PROFILE_PATH}" || (
+	# NOTE: Uses "command grep" (not "grep") since some shells alias/shadow "grep"
+	# (e.g. Claude Code's shell integration), which can silently fail to match this
+	# pattern and cause this line to be re-appended on every shell startup.
+	#
+	command grep --quiet "${BASH_SCRIPTS_ADMIN_INDEX_PATH_WITH_HOME}" "${BASH_PROFILE_PATH}" || (
 		tee -a "${BASH_PROFILE_PATH}" <<-BASH > /dev/null
 			[ -f "${BASH_SCRIPTS_ADMIN_INDEX_PATH_WITH_HOME}" ] && . "${BASH_SCRIPTS_ADMIN_INDEX_PATH_WITH_HOME}" # Automatically added by "bash_scripts_admin".
 		BASH
@@ -29,7 +33,7 @@ bash_scripts_setup_bash_profile() {
 	##
 	# Adds importing of 'bash_scripts' to the '.bash_profile' if it is NOT already added.
 	#
-	grep --quiet "${BASH_SCRIPTS_INDEX_PATH_WITH_HOME}" "${BASH_PROFILE_PATH}" || (
+	command grep --quiet "${BASH_SCRIPTS_INDEX_PATH_WITH_HOME}" "${BASH_PROFILE_PATH}" || (
 		tee -a "${BASH_PROFILE_PATH}" <<-BASH > /dev/null
 			[ -f "${BASH_SCRIPTS_INDEX_PATH_WITH_HOME}" ] && . "${BASH_SCRIPTS_INDEX_PATH_WITH_HOME}" # Automatically added by "bash_scripts_admin".
 		BASH
