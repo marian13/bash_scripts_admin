@@ -1,0 +1,4 @@
+version: "1"
+repo:
+  owner: bash_scripts
+  name: bash_scripts_admin
